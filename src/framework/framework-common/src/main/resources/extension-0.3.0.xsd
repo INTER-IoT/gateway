@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" targetNamespace="https://docs.inter-iot.eu/schemas/gateway/0.3.0"
+	xmlns="https://docs.inter-iot.eu/schemas/gateway/0.3.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="extension">
+		<xs:complexType>
+			<xs:all minOccurs="1" maxOccurs="1">
+				<xs:element type="xs:string" name="name" />
+				<xs:element type="xs:string" name="version" />
+				<xs:element type="xs:string" name="vendor" />
+				<xs:element type="xs:string" name="specVersion" />
+				<xs:element name="category">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="controller" />
+							<xs:enumeration value="physical" />
+							<xs:enumeration value="virtual" />
+							<xs:enumeration value="generic" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element type="xs:anyURI" name="url" />
+				<xs:element type="xs:string" name="description" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

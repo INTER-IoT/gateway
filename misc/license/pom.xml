@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>eu.inter-iot</groupId>
+		<artifactId>parent-pom</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>eu.interiot.gateway</groupId>
+	<artifactId>gateway-license</artifactId>
+	<packaging>pom</packaging>
+	
+	<modules>
+		<module>../../src</module>
+	</modules>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.16</version>
+				<executions>
+					<execution>
+						<id>aggregate-add-third-party</id>
+						<goals>
+							<goal>aggregate-add-third-party</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${user.dir}</outputDirectory>
+							<thirdPartyFilename>NOTICE</thirdPartyFilename>
+							<fileTemplate>${project.basedir}/NOTICE-template.ftl</fileTemplate>
+							<licenseMergesFile>${project.basedir}/license-merges.txt</licenseMergesFile>
+							<excludedGroups>eu.interiot</excludedGroups>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

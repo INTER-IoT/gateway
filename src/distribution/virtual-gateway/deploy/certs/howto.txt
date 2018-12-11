@@ -1,0 +1,9 @@
+# selfsigned
+openssl req -x509 -newkey rsa:4096 -keyout default-key.pem -out default-cert.pem -days 365 -subj '/CN=localhost' -nodes
+
+# create key and csr
+openssl req -new -newkey rsa:4096 -keyout default-key.pem -out default-cert.csr -subj '/CN=localhost' -nodes
+
+# sign csr
+openssl x509 -req -in default-cert.csr -CA default-ca-cert.pem -CAkey default-ca-key.pem -CAcreateserial -out default-cert.pem -days 365
+
