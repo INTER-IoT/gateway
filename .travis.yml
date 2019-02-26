@@ -11,7 +11,7 @@ deploy:
   api_key:
     secure: kTjGsnPke7zW+UVNAucQwgZa2vhD2IC/GAnKwOxwtUSCUlqmXhsXzaIv7I1WyQ8xSSq+yfKLqJt8bEtF1nn03oKCrvigmyCrLpLHF4h+g059Me8dHLmOHvnT/Mf4kUzULhsiPTGrCQX7T3beKDRHXiK6MwnG9mOYAu7mYwNaC7/jBCadQIHS6R37AN/KrysFVZYcaOR29fq1cCJaxbgNhqCXIARBsMhaoPsySg6F+vcwHF0cx1ldco9AL9UVolZBc6KH+hWkca4K3ku7VJfBjrpMbHwOPVpKBi2BN84ojUY/3Up2VZgb/9F5bk2U2aODKYcyqBCW9CPMP/eCtqZx98VTfGV1yi7wSNVTSsXv31Ox0oDNcssU/OorLEFisCpOQhZQFj45srpLun56vx/N2oBEpmvuY/ooV/s+FiswSF3IqlHaSxXsQiXRpZVSzpJeQuUvTwVszGVkEFoH7YmHhjQ30kJ97XtcFY2mLWYAT++d+Y5josEL9fMyDyDlPPtZEWM9LrRspvER5zjqVFzy4woVO8b07nnD6jWxT/7/qPMRXqTllM0TakUnVBrvXz0QdzBKgf3UBME1pNh6hmqMYdCy894FEW3rWJwV5y+NjeprlRj9ISueXaL0+dlpmotSBJ2V2I2fMw9D8/nIQtvBFuw7YjaIYITuKGq+MpLaATk=
   file_glob: true
-  file: "src/distribution/*/target/*.zip"
+  file: "distribution/*/target/*.zip"
   skip_cleanup: true
   on:
     repo: INTER-IoT/gateway
