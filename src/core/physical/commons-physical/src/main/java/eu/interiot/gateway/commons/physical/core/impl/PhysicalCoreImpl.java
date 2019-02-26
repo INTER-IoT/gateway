@@ -83,7 +83,7 @@ public class PhysicalCoreImpl extends PhysicalCore implements ConnectionListener
 		File folder = new File(folderPath);
 		File[] listOfFiles = folder.listFiles();		
 		for (File file : listOfFiles) {
-		    if (file.isFile()) {
+		    if (file.isFile() && file.getName().endsWith(".json")) {
 		    	log.info("Register device: "  + folderPath + '/' + file.getName());		    
 		    	try {
 					registryService.loadDeviceFromReader(new FileReader(file));

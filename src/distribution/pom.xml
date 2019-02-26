@@ -88,31 +88,6 @@
 		</dependency>
 	</dependencies>
 	
-	<profiles>
-		<profile>
-			<id>dist-full</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>eu.interiot.gateway.extension.common</groupId>
-					<artifactId>console</artifactId>
-					<version>${project.version}</version>
-					<classifier>dist</classifier>
-					<type>zip</type>
-				</dependency>
-				<dependency>
-					<groupId>eu.interiot.gateway.extension.common</groupId>
-					<artifactId>message-cache</artifactId>
-					<version>${project.version}</version>
-					<classifier>dist</classifier>
-					<type>zip</type>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
-	
 	<build>
 		<pluginManagement>
 			<plugins>
