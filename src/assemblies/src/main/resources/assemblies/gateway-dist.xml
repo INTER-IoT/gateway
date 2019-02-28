@@ -39,7 +39,7 @@
 	<formats>
 		<format>zip</format>
 	</formats>
-	<includeBaseDirectory>true</includeBaseDirectory>
+	<includeBaseDirectory>false</includeBaseDirectory>
 	<fileSets>
 		<fileSet>
 			<directory>${project.basedir}/deploy</directory>
