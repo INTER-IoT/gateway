@@ -1,0 +1,21 @@
+{
+  "type": "simulated",
+  "controller": "simulator",
+  "description": "example of simulated sensor and actuator",
+	"config": {
+    "rate": 5,
+    "rateUnit": "SECONDS"
+	},
+	"device_io": [
+		{
+			"type":"sensor",
+			"attr_name":"temperature",
+			"attr_type":"float"
+		},
+		{
+			"type":"actuator",
+			"attr_name":"light",
+			"attr_type":"boolean"
+		}
+	]       
+}
