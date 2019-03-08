@@ -38,7 +38,7 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 public class FWCmdOptions {
-	@Option(names= {"-i", "--install-extension"})
+	@Option(names= {"-i", "--install"})
 	private boolean install;
 	
 	@Parameters(arity="0...*")
