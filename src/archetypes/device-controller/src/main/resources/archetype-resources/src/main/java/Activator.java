@@ -37,6 +37,7 @@ import java.util.Hashtable;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
+import eu.interiot.gateway.commons.api.configuration.ConfigurationService;
 import eu.interiot.gateway.commons.physical.api.dmanager.DeviceControllerFactory;
 
 public class Activator implements BundleActivator{
@@ -44,16 +45,27 @@ public class Activator implements BundleActivator{
 	@Override
 	public void start(BundleContext context) throws Exception {
 		
-		/*CommandServiceAdapter commandService = new CommandServiceAdapter();
-		commandService.registerCommand(new TestRemote(context));
+		/******************************************
+		 * Get configuration key-value properties *
+		 * from the gateway configuration file    *
+		 * (if needed)                            *
+		 ******************************************/
 		
-		context.registerService(CommandService_old.class.getName(), commandService, null);
-		*/
-		DeviceControllerFactory deviceControllerFactory = DeviceControllerFactory.generic(DeviceSimulator.class);
+		ConfigurationService configuration = context.getService(context.getServiceReference(ConfigurationService.class));
+		
+		@SuppressWarnings("unused")
+		int examplePort = configuration.getInt("port", 5678); // default value if not exists
+		
+		/**************************************
+		 * Instantiate the controller factory *
+		 * service and register it with a     *
+		 * controller key                     *
+		 **************************************/
+		
+		DeviceControllerFactory exampleDeviceControllerFactory = DeviceControllerFactory.generic(ExampleDeviceController.class);
 		Hashtable<String, String> serviceProperties = new Hashtable<>();
-		serviceProperties.put("controller-key", "simulator");
-		context.registerService(DeviceControllerFactory.class, deviceControllerFactory, serviceProperties);
-		
+		serviceProperties.put("controller-key", "\${artifactId}");
+		context.registerService(DeviceControllerFactory.class, exampleDeviceControllerFactory, serviceProperties);
 	}
 	@Override
 	public void stop(BundleContext context) throws Exception {

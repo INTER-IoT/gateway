@@ -42,6 +42,7 @@
 	<packaging>bundle</packaging>
 	
 	<description>Gateway Simulator Device Controller</description>
+	
 	<dependencies>
 		<dependency>
 			<groupId>eu.interiot.gateway.core.common</groupId>
@@ -123,6 +124,28 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.1.0</version>
+				<dependencies>
+					<dependency>
+						<groupId>eu.interiot.gateway</groupId>
+						<artifactId>assemblies</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>extension-dist</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

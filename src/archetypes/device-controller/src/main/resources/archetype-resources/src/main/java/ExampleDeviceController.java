@@ -32,7 +32,6 @@
  */
 package \${package};
 
-import java.math.BigInteger;
 import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
@@ -40,49 +39,42 @@ import org.apache.logging.log4j.Logger;
 
 import eu.interiot.gateway.commons.api.device.Attribute;
 import eu.interiot.gateway.commons.api.device.DeviceDefinition;
-import eu.interiot.gateway.commons.api.device.DeviceIO;
 import eu.interiot.gateway.commons.physical.api.dmanager.Device.State;
 import eu.interiot.gateway.commons.physical.api.dmanager.DeviceController;
 import eu.interiot.gateway.commons.physical.api.dmanager.DeviceState;
 
-public class DeviceSimulator extends DeviceController {
+public class ExampleDeviceController extends DeviceController {
 	
-	private static Logger log = LogManager.getLogger(DeviceSimulator.class);
+	private static Logger log = LogManager.getLogger(ExampleDeviceController.class);
 	
 	private Random random;
 	
-	public DeviceSimulator(DeviceDefinition deviceDefinition, DeviceState deviceState) {
+	public ExampleDeviceController(DeviceDefinition deviceDefinition, DeviceState deviceState) {
 		super(deviceDefinition, deviceState);
 		this.random = new Random();
 	}
 
 	@Override
 	public void connect() throws Exception {
+		// connect to device, once it's state changes trigger the update
 		super.deviceState.updateState(State.CONNECTED);
 	}
 
 	@Override
 	public void disconnect() throws Exception {
+		// disconnect to device, once it's state changes trigger the update
 		super.deviceState.updateState(State.DISCONNECTED);
 	}
 
 	@Override
 	public void update() throws Exception {
-		for(DeviceIO devIO : super.deviceDefinition.getDeviceIOs()) {
-			if(devIO.getType() == DeviceIO.Type.SENSOR) {
-				Attribute attribute = devIO.getAttribute();
-				Object value;
-				switch(attribute.getType()) {
-					case INTEGER: value = (int) Math.floor(100 * random.nextDouble() - 50);
-					break;
-					case FLOAT: value = 100 * random.nextDouble() - 50;
-					break;
-					case BOOLEAN: value = random.nextBoolean();
-					break;
-					default: value = new BigInteger(50, random).toString(32);
-				}
-				super.deviceState.updateValue(attribute, value);
-			}
+		switch(super.getDeviceDefinition().getType()) {
+		case "\${artifactId}_temperature_and_light": {
+			Attribute attr = super.deviceDefinition.getDeviceIOByAttributeName("temperature").getAttribute();
+			int randValue = (int) Math.floor(100 * random.nextDouble() - 50);
+			super.deviceState.updateValue(attr, randValue);
+		}
+		default:
 		}
 	}
 
